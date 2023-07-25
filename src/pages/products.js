@@ -1,7 +1,7 @@
-import Layout from '@/components/Layout';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import Layout from "@/components/Layout";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 function ProductItem(props) {
   return (
@@ -35,21 +35,21 @@ export default function Products() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        'https://dummyjson.com/auth/products?limit=10',
+        "https://dummyjson.com/auth/products?limit=10",
         {
           headers: {
-            Authorization: localStorage.getItem('token')
-              ? `Bearer ${localStorage.getItem('token')}`
+            Authorization: localStorage.getItem("token")
+              ? `Bearer ${localStorage.getItem("token")}`
               : null,
           },
-        }
+        },
       );
 
       if (response.status === 200) {
         setProducts(response.data.products);
       }
     } catch (error) {
-      console.log('error > ', error);
+      console.log("error > ", error);
     }
   };
 
@@ -59,7 +59,7 @@ export default function Products() {
 
   const handleLogout = () => {
     localStorage.clear();
-    router.replace('/login');
+    router.replace("/login");
   };
 
   return (
