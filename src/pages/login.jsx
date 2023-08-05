@@ -1,11 +1,12 @@
-import Layout from "@/components/Layout";
-import { useState } from "react";
+import Layout from '@/components/Layout';
+import { useState } from 'react';
 
-import axios from "axios";
-import { useRouter } from "next/router";
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function Login() {
   const router = useRouter();
+
   const [formValues, setFormValues] = useState({
     username: null,
     password: null,
@@ -14,16 +15,16 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://dummyjson.com/auth/login", {
+      const response = await axios.post('https://dummyjson.com/auth/login', {
         username: formValues.username,
         password: formValues.password,
       });
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        router.push("/products");
+        localStorage.setItem('token', response.data.token);
+        router.push('/products');
       }
     } catch (error) {
-      console.log("response > ", error);
+      console.log('response > ', error);
     }
   };
 
